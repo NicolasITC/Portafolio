@@ -25,13 +25,8 @@ export type DocsData = {
   max_width: boolean;
 };
 
-// Define the type for docs collection
-export type DocsEntry = CollectionEntry<"docs"> & {
-  data: DocsData;
-};
-
-// For HeroLayout.astro
-export interface HeroLayoutProps {
+// For BaseLayout.astro
+export interface BaseLayoutProps {
   title?: string | undefined;
   description?: string | undefined;
   ogImage?: URL | undefined;

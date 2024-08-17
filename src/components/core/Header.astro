@@ -1,8 +1,6 @@
 ---
 import { ModeToggle } from "@/components/core/ModeToggle";
-import HamNavMenu from "@/components/core/HamNavMenu.astro";
 import NavMenu from "@/components/core/NavMenu.astro";
-import { Search } from "@/components/core/Search";
 
 import { Button } from "@/components/ui/button";
 
@@ -55,7 +53,6 @@ const { class: className } = Astro.props;
         )
       } -->
       <div class="md:hidden flex flex-row-reverse gap-4">
-        <HamNavMenu />
         <ModeToggle client:load transition:persist />
       </div>
 

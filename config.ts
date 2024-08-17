@@ -21,7 +21,7 @@ export const menu_items: { title: string; href: string }[] = [
   },
   {
     title: "Work",
-    href: "#",
+    href: "/work",
   },
   {
     title: "About",
