@@ -1,0 +1,36 @@
+---
+import HeadSEO from "@/components/core/HeadSEO.astro";
+import Header from "@/components/core/Header.astro";
+import Footer from "@/components/core/Footer.astro";
+
+import type { HeroLayoutProps } from "@/lib/types";
+import { capitalizeFirstLetter } from "@/lib/utils";
+
+import { LOCALE, SITE } from "config";
+
+const { title, description, ogImage } = Astro.props as HeroLayoutProps;
+---
+
+<!doctype html>
+<html lang=`${LOCALE.lang ?? "en"}` class="scroll-smooth">
+  <head>
+    <HeadSEO
+      title=`${title ? capitalizeFirstLetter(title) : SITE.title}`
+      description={description}
+      ogImage={ogImage}
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-foreground font-sans">
+    <div class="flex flex-col min-h-screen">
+      <Header class="bg-background" />
+      <main class="flex flex-1 flex-col justify-center items-center px-4">
+        <slot />
+      </main>
+      <Footer class="border-t border-border bg-background" />
+    </div>
+  </body>
+</html>

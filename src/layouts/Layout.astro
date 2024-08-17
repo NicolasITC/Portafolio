@@ -1,0 +1,59 @@
+---
+import HeadSEO from "@/components/core/HeadSEO.astro";
+import Header from "@/components/core/Header.astro";
+import Footer from "@/components/core/Footer.astro";
+import { Copy } from "@/components/core/Copy";
+import type { DocsLayoutProps } from "@/lib/types";
+import { menu, capitalizeFirstLetter } from "@/lib/utils";
+
+import { LOCALE, SITE, docconfig } from "config";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const resolvedImageWithDomain = new URL(
+  "/opengraph.jpg",
+  Astro.site
+).toString();
+
+const {
+  title,
+  author,
+  pubDatetime,
+  modDatetime,
+  description,
+  draft,
+  tags,
+  hide_breadcrumbs,
+  hide_toc,
+  hide_sidenav,
+  max_width,
+  headings,
+} = Astro.props as DocsLayoutProps;
+
+const makeTitle = title
+  ? title + " | " + "Astroship"
+  : "Astroship - Starter Template for Astro with Tailwind CSS";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <HeadSEO
+      title=`${title ? capitalizeFirstLetter(title) + " | " + SITE.title : SITE.title}`
+      description={description}
+    />
+  </head>
+  <body class="max-h-screen y overflow-hidden.">
+    <!-- <Navbar /> -->
+    <Header class="bg-background" />
+    <slot />
+    <Footer />
+    <style is:global>
+      /* Improve Page speed */
+      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>
